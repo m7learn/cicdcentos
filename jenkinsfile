@@ -16,17 +16,17 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t devopshint/my-app-1.0 .'
+                  sh 'docker build -t m7learn/my-app-1.0 .'
                 }
             }
         }
         stage('Deploy Docker Image') {
             steps {
                 script {
-                 withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u devopshint -p ${dockerhubpwd}'
+                 wwithCredentials([string(credentialsId: 'm7learn', variable: 'dockerpwd')]) {
+                      sh 'docker login -u m7learn -p ${dockerpwd}'
                  }  
-                 sh 'docker push devopshint/my-app-1.0'
+                 sh 'docker push m7learn/my-app-1.0'
                 }
             }
         }
